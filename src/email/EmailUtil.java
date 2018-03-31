@@ -15,18 +15,9 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-/**
- * 邮件通知工具
- *
- */
-/**
- * 邮件通知工具
- *
- */
 
 /**
  * 邮件通知工具
- *
  */
 @Component
 public class EmailUtil {
@@ -34,19 +25,6 @@ public class EmailUtil {
     private static Transport transport;
 
     private static Logger logger = LoggerFactory.getLogger(EmailUtil.class);
-
-
-    public static void close() {
-        try {
-            if (transport != null) {
-                transport.close();
-                transport = null;
-            }
-        } catch (Exception e) {
-
-        }
-        session = null;
-    }
 
     private static final String account = "";
 
@@ -328,5 +306,18 @@ public class EmailUtil {
         transport = session.getTransport("smtp");
         transport.connect(account, pwd);
     }
+
+    public static void close() {
+        try {
+            if (transport != null) {
+                transport.close();
+                transport = null;
+            }
+        } catch (Exception e) {
+
+        }
+        session = null;
+    }
+
 
 }
