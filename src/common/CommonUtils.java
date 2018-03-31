@@ -17,25 +17,26 @@ public class CommonUtils {
 
 
     /**
-     * 计算 keyword 在 srcText 中出现的次数
-     * @param srcText
-     * @param keyword
+     * 字符在字符串中出现的次数
+     *
+     * @param string
+     * @param a
      * @return
      */
-    public static int countStr(String srcText, String keyword){
+    public static int occurTimes(String string, String a) {
+        int pos = -2;
+        int n = 0;
 
-        String[] spcSysmbols = new String[]{"+", "*", "|", "/", "?"};
-
-        int count = 0;
-        for(int x = 0; spcSysmbols.length > x; x++){
-            keyword = keyword.replace(spcSysmbols[x], "\\" + spcSysmbols[x]);
+        while (pos != -1) {
+            if (pos == -2) {
+                pos = -1;
+            }
+            pos = string.indexOf(a, pos + 1);
+            if (pos != -1) {
+                n++;
+            }
         }
-        Pattern p = Pattern.compile(keyword);
-        Matcher m = p.matcher(srcText);
-        while (m.find()) {
-            count++;
-        }
-        return count;
+        return n;
     }
 
     /**
@@ -124,6 +125,66 @@ public class CommonUtils {
             return str;
         }
     }
+
+    /**
+     * 字符串根据位数补0 不够位数的在前面补0，保留num长度位数字
+     * @param code
+     * @return
+     */
+    public static String autoGenericCode(String code, int num) {
+        String result = "";
+        // 保留num的位数
+        // 0 代表前面补充0
+        // d 代表参数为正数型
+        result = String.format("%0" + num + "d", Integer.parseInt(code));
+        return result;
+    }
+
+    /**
+     * 全角转半角
+     * @param input String.
+     * @return 半角字符串
+     */
+    public static String ToDBC(String input) {
+        if(StringUtils.isEmpty(input)){
+            return null;
+        }
+
+        char c[] = input.toCharArray();
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] == '\u3000') {
+                c[i] = ' ';
+            } else if (c[i] > '\uFF00' && c[i] < '\uFF5F') {
+                c[i] = (char) (c[i] - 65248);
+
+            }
+        }
+        String returnString = new String(c);
+
+        return returnString;
+    }
+
+    /**
+     * 半角转全角
+     * @param input String.
+     * @return 全角字符串.
+     */
+    public static String ToSBC(String input) {
+        if(StringUtils.isEmpty(input)){
+            return null;
+        }
+        char c[] = input.toCharArray();
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] == ' ') {
+                c[i] = '\u3000';
+            } else if (c[i] < '\177') {
+                c[i] = (char) (c[i] + 65248);
+
+            }
+        }
+        return new String(c);
+    }
+
 
 
 
