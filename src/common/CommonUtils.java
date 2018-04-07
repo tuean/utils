@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.InetAddress;
 import java.util.Map;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -186,6 +187,21 @@ public class CommonUtils {
     }
 
 
+    public static String randomString(int num){
+        if(num <= 0){
+            throw new IllegalArgumentException();
+        }
+        String source = "abcdefghijklmnopqrstuvwxyz0123456789";
+        char[] cs = new char[num];
+        for(int x = 0; x < num; x++){
+            cs[x] = source.charAt(new Random().nextInt(source.length()));
+        }
+        return new String(cs);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(randomString(10));
+    }
 
 
 }
