@@ -56,6 +56,7 @@ public class ExcelUtils {
             Integer x = headerMap.size();
             Iterator iterator = headerMap.entrySet().iterator();
             int i = 0;
+            // todo to put the key on the defined column
             while(iterator.hasNext()){
                 Map.Entry entry = (Map.Entry) iterator.next();
                 cell = row.createCell(i);
@@ -74,7 +75,7 @@ public class ExcelUtils {
 
             row = sheet.createRow( i + 1);
             Map<String, Object> map;
-            if( contentList.get(i) instanceof String){
+            if(contentList.get(i) instanceof String){
                 map = new HashMap<>();
                 map.put("test", contentList.get(i));
             } else if (!(contentList.get(i) instanceof Map)) {
@@ -168,16 +169,20 @@ public class ExcelUtils {
         return null;
     }
 
-//    public static void main(String[] args) {
-//        List<String> list = new ArrayList<>();
-//        for (int x = 0; x < 10; x++) {
-//            list.add(String.valueOf(x));
-//        }
-//        XSSFWorkbook xssfWorkbook = createExcel(null, list, "test");
-//        String path = "/Users/zhongxiaotian/Desktop/pic/";
-//        String file = "test.xlsx";
-//        save(xssfWorkbook, path, file);
-//    }
+    public static void main(String[] args) {
+        // header
+        LinkedHashMap headerMap = new LinkedHashMap();
+        headerMap.put("1", "number");
+        // value
+        List<String> list = new ArrayList<>();
+        for (int x = 0; x < 10; x++) {
+            list.add(String.valueOf(x));
+        }
+        XSSFWorkbook xssfWorkbook = createExcel(headerMap, list, "test");
+        String path = "~/Desktop/";
+        String file = "test.xlsx";
+        save(xssfWorkbook, path, file);
+    }
 
 
 }
