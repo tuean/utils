@@ -11,9 +11,6 @@ import org.openxmlformats.schemas.drawingml.x2006.wordprocessingDrawing.CTInline
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
- * Created by bin.zhai on 2017/2/17.
- */
 public class CustomXWPFDocument extends XWPFDocument {
 
 
