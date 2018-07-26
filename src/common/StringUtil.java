@@ -1,5 +1,10 @@
 package common;
 
+import org.apache.commons.io.IOUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
 import java.util.Formatter;
 import java.util.Random;
 
@@ -30,7 +35,8 @@ public class StringUtil {
     }
 
     /**
-     * from dingding example
+     * copy from
+     *      DingDing example
      *
      * 小写
      *
@@ -113,7 +119,56 @@ public class StringUtil {
         return stringBuffer.toString();
     }
 
-    public static void main(String[] args) {
-        System.out.println(randomFullString(50));
+
+    /**
+     * 罗马数字 转为 阿拉伯数字
+     *      from leetcode
+     *
+     * @param s
+     * @return
+     */
+    public static int romanToInt(String s) {
+        char[] sc = s.toCharArray();
+        int ans = toInt(sc[0]);
+        for (int i = 1; i < s.length(); i++) {
+            ans += toInt(sc[i]);
+            if (toInt(sc[i - 1]) < toInt(sc[i])) {
+                ans -= toInt(sc[i - 1]) * 2;
+            }
+        }
+        return ans;
     }
+
+    static int toInt(char s) {
+        switch(s) {
+            case 'I':return 1;
+            case 'V':return 5;
+            case 'X':return 10;
+            case 'L':return 50;
+            case 'C':return 100;
+            case 'D':return 500;
+            case 'M':return 1000;
+            default: return 0;
+        }
+    }
+
+
+
+    public static String inputStreamToStringByApacheUtils(InputStream inputStream, String encoding){
+        try {
+            StringWriter writer = new StringWriter();
+            IOUtils.copy(inputStream, writer, encoding);
+            return writer.toString();
+        } catch (IOException var) {
+            var.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String inputStreamToString(InputStream inputStream){
+        java.util.Scanner s = new java.util.Scanner(inputStream).useDelimiter("\\A");
+        return s.hasNext() ? s.next() : "";
+    }
+
+
 }
