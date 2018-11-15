@@ -1,10 +1,9 @@
 package common;
 
+import org.springframework.util.StopWatch;
+
 import javax.servlet.http.HttpServletRequest;
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
+import java.net.*;
 import java.util.Enumeration;
 
 
@@ -59,6 +58,21 @@ public class IpUtils {
             }
         }
         return ip;
+    }
+
+
+    public static String getLocalIp() throws UnknownHostException {
+        // todo getLocalHost 在mac环境下会出现数秒的延迟
+        try {
+            StopWatch stopWatch = new StopWatch();
+            stopWatch.start();
+            String ip = InetAddress.getLocalHost().getHostAddress();
+            stopWatch.stop();
+            return ip;
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
 }

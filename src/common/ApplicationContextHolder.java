@@ -1,6 +1,7 @@
 package common;
 
 import org.springframework.beans.BeansException;
+import org.springframework.boot.context.embedded.EmbeddedWebApplicationContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
@@ -45,5 +46,18 @@ public class ApplicationContextHolder implements ApplicationContextAware {
 
     public static ApplicationContext getApplicationContext(){
         return context;
+    }
+
+    /**
+     * stop the server
+     */
+    public static void stopServer(){
+        // spring boot 2.0
+//        ServletWebServerApplicationContext context = (ServletWebServerApplicationContext) ApplicationContextHolder.getContext();
+//        context.getWebServer().stop();
+
+        // spring boot 1.5
+        EmbeddedWebApplicationContext embeddedWebApplicationContext = (EmbeddedWebApplicationContext) ApplicationContextHolder.getApplicationContext();
+        embeddedWebApplicationContext.stop();
     }
 }

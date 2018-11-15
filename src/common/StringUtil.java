@@ -1,6 +1,7 @@
 package common;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.exception.ExceptionUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -169,6 +170,82 @@ public class StringUtil {
         java.util.Scanner s = new java.util.Scanner(inputStream).useDelimiter("\\A");
         return s.hasNext() ? s.next() : "";
     }
+
+    public static String getStackTrace(Throwable a){
+        return ExceptionUtils.getStackTrace(a);
+    }
+
+
+    /**
+     * copy from
+     *      dingding example
+     *
+     * @param count
+     * @return
+     */
+    public static String getRandomStr(int count) {
+        String base = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        Random random = new Random();
+        StringBuffer sb = new StringBuffer();
+
+        for(int i = 0; i < count; ++i) {
+            int number = random.nextInt(base.length());
+            sb.append(base.charAt(number));
+        }
+
+        return sb.toString();
+    }
+
+    /**
+     * copy from
+     *      dingding example
+     *
+     * @param count
+     * @return
+     */
+    public static byte[] int2Bytes(int count) {
+        byte[] byteArr = new byte[]{(byte)(count >> 24 & 255), (byte)(count >> 16 & 255), (byte)(count >> 8 & 255), (byte)(count & 255)};
+        return byteArr;
+    }
+
+    /**
+     * copy from
+     *      dingding example
+     *
+     * @param byteArr
+     * @return
+     */
+    public static int bytes2int(byte[] byteArr) {
+        int count = 0;
+
+        for(int i = 0; i < 4; ++i) {
+            count <<= 8;
+            count |= byteArr[i] & 255;
+        }
+
+        return count;
+    }
+
+
+    /**
+     * 将整数num转化为32位的二进制
+     *
+     * @param num
+     * @return
+     */
+    public static String toFullBinaryString(int num) {
+        char[] chs = new char[Integer.SIZE];
+        for (int i = 0; i < Integer.SIZE; i++) {
+            chs[Integer.SIZE - 1 - i] = (char) (((num >> i) & 1) + '0');
+            System.out.println(chs[Integer.SIZE - 1 - i]);
+        }
+        return new String(chs);
+    }
+
+    public static String binaryStringToInteger(String source) {
+        return Integer.valueOf(source,2).toString();
+    }
+
 
 
 }
