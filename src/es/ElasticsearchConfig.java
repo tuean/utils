@@ -6,9 +6,7 @@ import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+
 
 import java.net.InetAddress;
 
@@ -16,7 +14,7 @@ import java.net.InetAddress;
  * es 设置
  * 来源： http://souyunku.com/2017/11/06/ElasticSearch-example/
  */
-@Configuration
+//@Configuration
 public class ElasticsearchConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(ElasticsearchConfig.class);
@@ -24,26 +22,26 @@ public class ElasticsearchConfig {
     /**
      * elk集群地址
      */
-    @Value("${elasticsearch.ip}")
+//    @Value("${elasticsearch.ip}")
     public String hostName;
     /**
      * 端口
      */
-    @Value("${elasticsearch.port}")
+//    @Value("${elasticsearch.port}")
     public String port;
     /**
      * 集群名称
      */
-    @Value("${elasticsearch.cluster.name}")
+//    @Value("${elasticsearch.cluster.name}")
     public String clusterName;
 
     /**
      * 连接池
      */
-    @Value("${elasticsearch.pool}")
+//    @Value("${elasticsearch.pool}")
     public String poolSize;
 
-    @Bean
+//    @Bean
     public TransportClient init() {
 
         TransportClient transportClient = null;

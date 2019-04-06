@@ -2,7 +2,6 @@ package common;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import javax.persistence.Column;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -42,11 +41,11 @@ public class ResultSetUtil<T> {
                     Object columnValue = rs.getObject(x);
                     for(Field field : fields){
                         String name = field.getName();
-                        Annotation annotation = field.getAnnotation(Column.class);
-                        if(annotation != null){
-                            Column column = (Column) annotation;
-                            name = column.name();
-                        }
+//                        Annotation annotation = field.getAnnotation(Column.class);
+//                        if(annotation != null){
+//                            Column column = (Column) annotation;
+//                            name = column.name();
+//                        }
                         if(name.equals(columnName)){
                             BeanUtils.setProperty(bean, field.getName(), columnValue);
                             break;

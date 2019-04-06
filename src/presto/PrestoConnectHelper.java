@@ -14,7 +14,7 @@ import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.jdbc.support.JdbcUtils;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+//import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -61,7 +61,7 @@ public class PrestoConnectHelper {
      * spring boot应用中 如果presto节点连接失败 知道停止该应用
      * @throws DataSourceNotAvailableException
      */
-    @PostConstruct
+//    @PostConstruct
     public void init() throws DataSourceNotAvailableException {
         if(dataSource == null){
             //强制停止spring boot应用

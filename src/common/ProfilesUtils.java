@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+//import javax.annotation.PostConstruct;
 
 /**
  * Created by zhongxiaotian on 2018/2/28.
@@ -25,7 +25,7 @@ public class ProfilesUtils {
 
     private ProfilesUtils(){};
 
-    @PostConstruct
+//    @PostConstruct
     private void init(){
         String key = "spring.profiles.active";
         CURRENT_ENV = env.getProperty(key) == null ? DEFAULT_ENV : env.getProperty(key);

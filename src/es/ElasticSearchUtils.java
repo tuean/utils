@@ -22,9 +22,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import java.util.HashMap;
-import java.util.Map;
 
 
 @Component
@@ -37,7 +34,7 @@ public class ElasticSearchUtils {
 
     private static TransportClient client;
 
-    @PostConstruct
+//    @PostConstruct
     public void init(){
         client = this.transportClient;
     }

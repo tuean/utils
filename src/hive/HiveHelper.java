@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+//import javax.annotation.PostConstruct;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
@@ -29,7 +29,7 @@ public class HiveHelper {
 
     private static JdbcTemplate jdbcTemplate;
 
-    @PostConstruct
+//    @PostConstruct
     private void init(){
         logger.info("HiveTestHelper init ");
         jdbcTemplate = this.hiveJdbcTemplate;

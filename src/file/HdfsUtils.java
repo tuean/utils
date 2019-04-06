@@ -7,8 +7,8 @@ import org.apache.hadoop.fs.Path;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+//import javax.annotation.PostConstruct;
+//import javax.annotation.PreDestroy;
 import java.io.IOException;
 
 /**
@@ -35,14 +35,14 @@ public class HdfsUtils {
 		return hdfsOutStream;
 	}
 	
-	@PostConstruct
+//	@PostConstruct
 	public void init() {
 		Configuration conf = new Configuration();
 	    conf.set("fs.defaultFS", nameNode);
 	    this.conf = conf;
 	}
 	
-	@PreDestroy
+//	@PreDestroy
 	public void destroy() {
 		if(conf != null) {
 			conf = null;

@@ -1,6 +1,5 @@
 package common;
 
-import sun.misc.BASE64Encoder;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -92,31 +91,31 @@ public class DrawImageUtil {
         return sb.toString();
     }
 
-    public static Map<String,String> getImg(){
-        Map<String,String> map=new HashMap<String,String>();
-        BASE64Encoder encoder = new BASE64Encoder();
-        // 创建缓存
-        BufferedImage bi = new BufferedImage(WIDTH, HEIGHT,
-                BufferedImage.TYPE_INT_RGB);
-        // 获得画布
-        Graphics g = bi.getGraphics();
-        // 设置背影色
-        setBackGround(g);
-        // 设置边框
-        setBorder(g);
-        // 画干扰线
-        drawRandomLine(g);
-        // 写随机数
-        String random = drawRandomNum((Graphics2D) g);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        try {
-            ImageIO.write(bi, "jpg", baos);
-            byte[] bytes = baos.toByteArray();
-            map.put("radom",random);
-            map.put("base64",encoder.encodeBuffer(bytes).trim());
-            return map;
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
-        }
-    }
+//    public static Map<String,String> getImg(){
+//        Map<String,String> map=new HashMap<String,String>();
+//        BASE64Encoder encoder = new BASE64Encoder();
+//        // 创建缓存
+//        BufferedImage bi = new BufferedImage(WIDTH, HEIGHT,
+//                BufferedImage.TYPE_INT_RGB);
+//        // 获得画布
+//        Graphics g = bi.getGraphics();
+//        // 设置背影色
+//        setBackGround(g);
+//        // 设置边框
+//        setBorder(g);
+//        // 画干扰线
+//        drawRandomLine(g);
+//        // 写随机数
+//        String random = drawRandomNum((Graphics2D) g);
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        try {
+//            ImageIO.write(bi, "jpg", baos);
+//            byte[] bytes = baos.toByteArray();
+//            map.put("radom",random);
+//            map.put("base64",encoder.encodeBuffer(bytes).trim());
+//            return map;
+//        } catch (Exception e) {
+//            throw new RuntimeException(e.getMessage());
+//        }
+//    }
 }
