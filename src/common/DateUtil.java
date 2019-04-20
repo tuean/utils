@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 
 public class DateUtil {
 
@@ -84,5 +85,26 @@ public class DateUtil {
         if (localDate == null) return "";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return localDate.format(formatter);
+    }
+
+    public static LocalDate stringToLocalDate(String param) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        formatter = formatter.withLocale(Locale.getDefault());  // Locale specifies human language for translating, and cultural norms for lowercase/uppercase and abbreviations and such. Example: Locale.US or Locale.CANADA_FRENCH
+        return LocalDate.parse(param, formatter);
+    }
+
+
+    public static long getTimeStamp(LocalDateTime localDateTime) {
+        return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
+
+
+
+
+    public static void main(String[] args) {
+        LocalDate date = stringToLocalDate("2018-11-11");
+        LocalDate yes = date.minusDays(1);
+        System.out.println(getTimeStamp(date.atStartOfDay()));
+        System.out.println(getTimeStamp(yes.atStartOfDay()));
     }
 }

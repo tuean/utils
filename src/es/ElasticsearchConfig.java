@@ -56,13 +56,14 @@ public class ElasticsearchConfig {
                     .put("thread_pool.search.size", Integer.parseInt(poolSize))
                     .build();
 
-            //es 2.4.0 连接方式
+            // es 2.4.0 连接方式
 //            transportClient = TransportClient.builder().settings(esSetting).build();
 //            InetSocketTransportAddress inetSocketTransportAddress = new InetSocketTransportAddress(InetAddress.getByName(hostName), Integer.valueOf(port));
 //            transportClient.addTransportAddresses(inetSocketTransportAddress);
 
-            //es 5.6.1 连接方式
+            // es 5.6.1 连接方式
             transportClient = new PreBuiltTransportClient(esSetting);
+            // TransportAddress;// es6使用此类
             InetSocketTransportAddress inetSocketTransportAddress = new InetSocketTransportAddress(InetAddress.getByName(hostName), Integer.valueOf(port));
             transportClient.addTransportAddresses(inetSocketTransportAddress);
 

@@ -204,4 +204,10 @@ public class CommonUtils {
     }
 
 
+    public static String getCaller() {
+        StackTraceElement stackTraceElement[] = Thread.currentThread().getStackTrace();
+        String callName = stackTraceElement[2].getClassName();
+        return callName;
+    }
+
 }
