@@ -76,7 +76,7 @@ public class IpUtils {
     }
 
 
-    private String getRealIp(HttpServletRequest request) {
+    private static String getRealIp(HttpServletRequest request) {
         String realIp = request.getHeader("x-forwarded-for");
         if(realIp == null || realIp.length() == 0 || "unknown".equalsIgnoreCase(realIp)) {
             realIp = request.getHeader("Proxy-Client-IP");
