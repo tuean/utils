@@ -8,6 +8,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class DateUtil {
 
@@ -101,10 +102,11 @@ public class DateUtil {
 
 
 
-    public static void main(String[] args) {
-        LocalDate date = stringToLocalDate("2018-11-11");
-        LocalDate yes = date.minusDays(1);
-        System.out.println(getTimeStamp(date.atStartOfDay()));
-        System.out.println(getTimeStamp(yes.atStartOfDay()));
+    public static void main(String[] args) throws Exception{
+        String time = "2017-12-30T16:00:00.000Z";
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'.000Z'");
+        df.setTimeZone(TimeZone.getTimeZone("UTC"));
+        System.out.println(df.parse(time).toString());
     }
 }

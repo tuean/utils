@@ -1,4 +1,4 @@
-package common;
+package encrypt;
 
 /**
  * Created by bin.zhai on 2017-10-16 16:14.

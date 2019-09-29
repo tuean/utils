@@ -73,4 +73,10 @@ public class FileUtils {
         return null;
     }
 
+    public static String getProjectPath() {
+        File f = new File(System.getProperty("java.class.path"));
+        File dir = f.getAbsoluteFile().getParentFile();
+        return dir.toString();
+    }
+
 }
