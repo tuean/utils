@@ -6,8 +6,27 @@ package common;
 public class MathUtils {
 
 
+    /**
+     * [start, end]
+     *
+     * @param start
+     * @param end
+     * @return
+     */
     public static int getRandomInt(int start, int end){
         return start + (int) (Math.random() * (end - start + 1));
+    }
+
+    /**
+     * [start, end]
+     *
+     * @param start
+     * @param end
+     * @return
+     */
+    public static int getRandomInt(int start, int end) {
+        Random rand = new Random();
+        return rand.nextInt(end - start + 1) + start;
     }
 
 
