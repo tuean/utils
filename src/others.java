@@ -22,5 +22,11 @@ public class others {
         }
         System.out.println("Done");
     }
+    
+    public static void searchInMongo() {
+        String keyword = "prefix=\\[" + 11 + "\\]";
+        Query query = Query.query(Criteria.where("key").regex(keyword));
+        List result = mongoTemplate.find(query, Object.class);
+    }
 
 }
